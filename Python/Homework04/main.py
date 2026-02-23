@@ -43,7 +43,9 @@ def task_03():
     while True:
         message = input("?: ")
 
-        messages.append(message)
+        if message:
+            messages.append(message)
+
         if len(messages) > 5:
             messages.pop(0)
 
@@ -52,20 +54,62 @@ def task_03():
 
     print(messages)
 
+def add_task_01():
+    """
+    Makes some manipulations with the given list of products.
+    Prints total price of all products in the dictionary.
+    """
+    products = {
+        "apple": {"quantity": 10, "price": 100},
+        "banana": {"quantity": 20, "price": 50},
+        "orange": {"quantity": 15, "price": 80},
+        "grape": {"quantity": 8, "price": 120},
+        "milk": {"quantity": 12, "price": 90},
+        "bread": {"quantity": 30, "price": 40}
+    }
+
+    for key in products:
+        products[key]["price"] *= 1.2
+
+    products.pop("milk")
+    products["salt"] = {"quantity": 7, "price": 12}
+
+    print("Общая цена товаров:",
+          sum(product["quantity"] * product["price"]
+              for product in products.values()))
+
+def add_task_02():
+    """
+    Creates info dictionary by the lists of keys and values.
+    """
+    keys = ['name', 'age', 'city', 'occupation', 'email', 'phone',
+            'hobby', 'education', 'company', 'salary']
+
+    values = ['Alice', 30, 'New York',
+              'Engineer', 'alice@example.com', '+1234567890',
+              'Reading', 'Masters in Computer Science',
+              'TechCorp', 90000]
+
+    info = dict(zip(keys, values))
+
+    print(info)
+
 if __name__ == '__main__':
     tasks = {
-        1: task_01,
-        2: task_02,
-        3: task_03,
+        "1": task_01,
+        "2": task_02,
+        "3": task_03,
+        "a1": add_task_01,
+        "a2": add_task_02,
     }
     tasks_nums = list(tasks.keys())
     while True:
-        task_num = int(input(f"Select task to execute {tasks_nums} or 0 to finish: "))
+        task_num = input(f"Select task to execute {tasks_nums} or 0 to finish: ")
 
-        if task_num == 0:
+        if task_num == "0" or not task_num:
             break
 
-        if  task_num in tasks:
+        if task_num in tasks:
             tasks[task_num]()
             print()
         else:
