@@ -94,6 +94,26 @@ def add_task_02():
 
     print(info)
 
+def add_task_03():
+    """
+    Deciphers the given string using existing cipher key. Prints
+    deciphered string.
+    """
+    ciphered_str = "Qxx7M!rrLLL#9Afxыыf2Z#gA%rL1xgQaT@HппnL0LJK3Pgn^8$Mxяя@DD^$YHZ@CC--"
+    cipher = {'1': 'a', 'Q': 'h', 'x': 't', '7': 'p', 'M': 's', '!': ':',
+              'r': '/', 'L': 'w', '#': '.', '9': 'y', 'A': 'o', 'f': 'u',
+              '2': 'b', 'Z': 'e', 'g': 'c', '%': 'm', 'T': 'v', '@': '=',
+              'H': 'd', 'n': 'Q', '0': '4', 'K': 'W', '3': 'g', 'P': 'X',
+              '8': 'l', '$': 'i', 'Y': 'n', 'C': '5', 'D': 'L', '^': '&',
+              'V': '6', 'B': '7', 'E': '8', 'J': '9', 'S': '0', 'U': '1',
+              'I': '2', 'O': '3', 'a': '?', 'd': 'k', 'q': 'z'}
+
+    deciphered_str = ''
+    for char in ciphered_str:
+        deciphered_str += cipher.get(char, '')
+
+    print(deciphered_str)
+
 if __name__ == '__main__':
     tasks = {
         "1": task_01,
@@ -101,6 +121,7 @@ if __name__ == '__main__':
         "3": task_03,
         "a1": add_task_01,
         "a2": add_task_02,
+        "a3": add_task_03,
     }
     tasks_nums = list(tasks.keys())
     while True:
