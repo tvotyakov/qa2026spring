@@ -2,7 +2,7 @@
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
 <bookmarks/>
 <node TEXT="QA Theory" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1771428651033" VGAP_QUANTITY="3 pt"><hook NAME="MapStyle" background="#d6e8e8ff" zoom="0.826">
-    <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" auto_compact_layout="true" show_tags="UNDER_NODES" show_note_icons="true" associatedTemplateLocation="template:/light_sky_element_template.mm" fit_to_viewport="false" show_icons="BESIDE_NODES" showTagCategories="false"/>
+    <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" auto_compact_layout="false" show_tags="UNDER_NODES" show_note_icons="true" associatedTemplateLocation="template:/light_sky_element_template.mm" fit_to_viewport="false" show_icons="BESIDE_NODES" showTagCategories="false"/>
     <tags category_separator="::"/>
 
 <map_styles>
@@ -333,6 +333,122 @@
 <node TEXT="Инструменты тестировщика" ID="ID_1854643557" CREATED="1771433001950" MODIFIED="1771433009849"/>
 <node TEXT="Soft Skills" ID="ID_1930245269" CREATED="1771433012358" MODIFIED="1771433016670"/>
 <node TEXT="Навыки трудоустройства" ID="ID_1130786249" CREATED="1771433017018" MODIFIED="1771433028131"/>
+</node>
+<node TEXT="7 принципов" POSITION="bottom_or_right" ID="ID_478098387" CREATED="1772108594501" MODIFIED="1772108605011">
+<node TEXT="исчерпывающее тестирование невозможно" ID="ID_1649130271" CREATED="1772108605716" MODIFIED="1772109062819"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="color: #6666ff; font-weight: bold;">Eng: Exhaustive testing is impossible</span>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <span style="color: #ffffff;">Testing every combination of inputs and preconditions is unfeasible; therefore, testing should be based on risk analysis and priorities.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node TEXT="тестирование демонстрирует наличие дефектов, а не их отсутствие" ID="ID_1652197909" CREATED="1772108616213" MODIFIED="1772109068914"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="font-weight: bold; color: #6666ff;">Eng: Testing shows the presence of defects, not their absence. </span>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <span style="color: #ffffff;">Testing minimizes the probability of undiscovered bugs, but it cannot prove that software is 100% defect-free.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node TEXT="заблуждение об отсутствии ошибок" ID="ID_1768303107" CREATED="1772108631342" MODIFIED="1772110627694"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="color: #6666ff; font-weight: bold;">Eng: Absence-of-errors is a fallacy</span>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <span style="color: #ffffff;">A bug-free system that does not meet user requirements or needs is still a failure.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node TEXT="раннее тестирование сохраняет время и деньги" ID="ID_1672970893" CREATED="1772108641422" MODIFIED="1772110431617"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="color: #6666ff; font-weight: bold;">Eng: Early testing saves time and money</span>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <span style="color: #ffffff;">To reduce costs and prevent defects in requirements or design, testing activities should start as soon as possible, known as &quot;shifting left&quot;.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node TEXT="принцип скопления или кластеризации дефектов" ID="ID_43901062" CREATED="1772108652532" MODIFIED="1772110489695"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="color: #6666ff; font-weight: bold;">Eng: Defects cluster together</span><br style="color: #ffffff;"/><br style="color: #ffffff;"/><span style="color: #ffffff;">A small number of modules (often 20% of the code) usually contains 80% of the bugs, a concept often known as the Pareto Principle.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node TEXT="тестирование зависит от контекста" ID="ID_816372270" CREATED="1772108663722" MODIFIED="1772110584362"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="color: #6666ff; font-weight: bold;">Eng: Testing is context-dependent</span>
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <span style="color: #ffffff;">Testing approaches vary based on the context of the software; for example, an e-commerce app is tested differently than an autopilot system.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node TEXT="парадокс пестицида" ID="ID_1082116670" CREATED="1772108673664" MODIFIED="1772110546996"><richcontent TYPE="DETAILS">
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span style="color: #6666ff; font-weight: bold;">Eng: Beware of the pesticide paradox</span><br style="color: #ffffff;"/><br style="color: #ffffff;"/><span style="color: #ffffff;">If the same tests are repeated continuously, they will stop finding new bugs. Tests must be regularly reviewed and updated.</span>
+    </p>
+  </body>
+</html></richcontent>
+</node>
 </node>
 </node>
 </map>
