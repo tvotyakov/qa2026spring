@@ -13,7 +13,7 @@ public class MathUtilsTest {
         int b = rand.nextInt(-2000, 2000);
 
         int sum = a + b;
-        Assert.assertEquals(sum, MathUtils.add(a, b));
+        Assert.assertEquals(MathUtils.add(a, b), sum);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class MathUtilsTest {
         int b = rand.nextInt(-2000, 2000);
 
         int sub = a - b;
-        Assert.assertEquals(sub, MathUtils.sub(a, b));
+        Assert.assertEquals(MathUtils.sub(a, b), sub);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class MathUtilsTest {
         int b = rand.nextInt(-2000, 2000);
 
         int multi = a * b;
-        Assert.assertEquals(multi, MathUtils.mul(a, b));
+        Assert.assertEquals(MathUtils.mul(a, b), multi);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class MathUtilsTest {
         }
 
         int div = a / b;
-        Assert.assertEquals(div, MathUtils.div(a, b));
+        Assert.assertEquals(MathUtils.div(a, b), div);
     }
 
     @Test(expectedExceptions = ArithmeticException.class)
