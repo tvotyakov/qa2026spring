@@ -6,8 +6,9 @@ def is_triangle(a, b, c):
     :param c: length of side c
     :return: True, if triangle is valid, False otherwise.
     """
-    return a + b > c
+    return a + b > c and b + c > a and c + a > b
 
 def run():
     print('is_triangle(2, 4, 9) = ', is_triangle(2, 4, 9))
     print('is_triangle(3, 4, 5) = ', is_triangle(3, 4, 5))
+    print('is_triangle(10, 1, 2) = ', is_triangle(10, 1, 2))
