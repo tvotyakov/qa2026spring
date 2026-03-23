@@ -44,15 +44,15 @@ public class SwagLabsLoginTest {
         var url = driver.getCurrentUrl();
         Assert.assertEquals(url, BASE_URL + "/inventory.html");
 
-        var header = By
-            .cssSelector("[data-test='primary-header'] .app_logo")
-            .findElement(driver)
+        var header = driver
+            .findElement(By
+                .cssSelector("[data-test='primary-header'] .app_logo"))
             .getText();
         Assert.assertEquals(header, "Swag Labs");
 
-        var secondHeader = By
-            .cssSelector("[data-test='secondary-header'] [data-test='title']")
-            .findElement(driver)
+        var secondHeader = driver
+            .findElement(By
+                .cssSelector("[data-test='secondary-header'] [data-test='title']"))
             .getText();
 
         Assert.assertEquals(secondHeader, "Products");
@@ -70,9 +70,9 @@ public class SwagLabsLoginTest {
 
         Assert.assertTrue(
             hasClass(password, "error"),
-            "UserName should be marked by error class");
+            "Password should be marked by error class");
 
-        var errorMessageEl = By.cssSelector("[data-test='error']").findElement(driver);
+        var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
         Assert.assertTrue(
             errorMessageEl.isDisplayed(),
             "Error message should be displayed");
@@ -96,7 +96,7 @@ public class SwagLabsLoginTest {
             hasClass(password, "error"),
             "UserName should be marked by error class");
 
-        var errorMessageEl = By.cssSelector("[data-test='error']").findElement(driver);
+        var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
         Assert.assertTrue(
             errorMessageEl.isDisplayed(),
             "Error message should be displayed");
@@ -113,17 +113,17 @@ public class SwagLabsLoginTest {
     }
 
     private void login(String username) {
-        this.username = By
-            .cssSelector("input[data-test='username']")
-            .findElement(driver);
+        this.username = driver
+            .findElement(By
+                .cssSelector("input[data-test='username']"));
         this.username.sendKeys(username);
 
-        this.password = By.cssSelector("input[data-test='password']")
-            .findElement(driver);
+        this.password = driver
+            .findElement(By.cssSelector("input[data-test='password']"));
         this.password.sendKeys("secret_sauce");
 
-        By.cssSelector("input[data-test='login-button']")
-            .findElement(driver)
+        driver
+            .findElement(By.cssSelector("input[data-test='login-button']"))
             .click();
     }
 
