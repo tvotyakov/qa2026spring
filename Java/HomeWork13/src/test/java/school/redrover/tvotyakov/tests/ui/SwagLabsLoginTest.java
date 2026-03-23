@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -16,8 +17,6 @@ public class SwagLabsLoginTest {
     private static final String BASE_URL = "https://www.saucedemo.com";
 
     private WebDriver driver;
-    private WebElement username;
-    private WebElement password;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -36,7 +35,7 @@ public class SwagLabsLoginTest {
     }
 
     @Test
-    public void TestStandardLogin_ShouldOpenProductPage() {
+    public void testStandardLoginShouldOpenProductPage() {
         // Act
         login("standard_user");
 
@@ -44,67 +43,53 @@ public class SwagLabsLoginTest {
         var url = driver.getCurrentUrl();
         Assert.assertEquals(url, BASE_URL + "/inventory.html");
 
-        var header = By
-            .cssSelector("[data-test='primary-header'] .app_logo")
-            .findElement(driver)
+        var header = driver
+            .findElement(By
+                .cssSelector("[data-test='primary-header'] .app_logo"))
             .getText();
         Assert.assertEquals(header, "Swag Labs");
 
-        var secondHeader = By
-            .cssSelector("[data-test='secondary-header'] [data-test='title']")
-            .findElement(driver)
+        var secondHeader = driver
+            .findElement(By
+                .cssSelector("[data-test='secondary-header'] [data-test='title']"))
             .getText();
 
         Assert.assertEquals(secondHeader, "Products");
     }
 
-    @Test
-    public void TestUnknownLogin_ShouldShowError() {
-        // Act
-        login("unknown_user");
-
-        // Asserts
-        Assert.assertTrue(
-            hasClass(username, "error"),
-            "UserName should be marked by error class");
-
-        Assert.assertTrue(
-            hasClass(password, "error"),
-            "UserName should be marked by error class");
-
-        var errorMessageEl = By.cssSelector("[data-test='error']").findElement(driver);
-        Assert.assertTrue(
-            errorMessageEl.isDisplayed(),
-            "Error message should be displayed");
-
-        var errorMessage = errorMessageEl.getText();
-        Assert.assertTrue(
-            errorMessage.contains("do not match any user"),
-            "Not expected error message. Actual text: " + errorMessage);
+    @DataProvider(name = "negative-tests")
+    public Object[][] createNegativeTestsData() {
+        return new Object[][] {
+            { "unknown_user", "do not match any user" },
+            { "locked_out_user", "user has been locked out" },
+        };
     }
 
-    @Test
-    public void TestLockedOutLogin_ShouldShowError() {
-        login("locked_out_user");
+    @Test(dataProvider = "negative-tests")
+    public void testNotExceptedLoginShouldShowError(String username, String expectedMessage) {
+        // Act
+        login(username);
 
         // Asserts
         Assert.assertTrue(
-            hasClass(username, "error"),
+            hasErrorClass(getUsername()),
             "UserName should be marked by error class");
 
         Assert.assertTrue(
-            hasClass(password, "error"),
-            "UserName should be marked by error class");
+            hasErrorClass(getPassword()),
+            "Password should be marked by error class");
 
-        var errorMessageEl = By.cssSelector("[data-test='error']").findElement(driver);
+        var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
         Assert.assertTrue(
             errorMessageEl.isDisplayed(),
             "Error message should be displayed");
 
         var errorMessage = errorMessageEl.getText();
         Assert.assertTrue(
-            errorMessage.contains("user has been locked out"),
-            "Not expected error message. Actual text: " + errorMessage);
+            errorMessage.contains(expectedMessage),
+            "Not expected error message.\n" +
+                " Expected: " + expectedMessage + "\n" +
+                " Actual: " + errorMessage);
     }
 
     @AfterMethod
@@ -113,21 +98,16 @@ public class SwagLabsLoginTest {
     }
 
     private void login(String username) {
-        this.username = By
-            .cssSelector("input[data-test='username']")
-            .findElement(driver);
-        this.username.sendKeys(username);
+        getUsername().sendKeys(username);
 
-        this.password = By.cssSelector("input[data-test='password']")
-            .findElement(driver);
-        this.password.sendKeys("secret_sauce");
+        getPassword().sendKeys("secret_sauce");
 
-        By.cssSelector("input[data-test='login-button']")
-            .findElement(driver)
+        driver
+            .findElement(By.cssSelector("input[data-test='login-button']"))
             .click();
     }
 
-    private boolean hasClass(WebElement element, String className) {
+    private boolean hasErrorClass(WebElement element) {
         var classes = element.getAttribute("class");
 
         if (classes == null || classes.isEmpty()) {
@@ -137,6 +117,16 @@ public class SwagLabsLoginTest {
         var classesList = Arrays.asList(classes.split(" "));
 
         return classesList
-            .contains(className);
+            .contains("error");
+    }
+
+    private WebElement getUsername() {
+        return driver
+            .findElement(By.cssSelector("input[data-test='username']"));
+    }
+
+    private WebElement getPassword() {
+        return driver
+            .findElement(By.cssSelector("input[data-test='password']"));
     }
 }
