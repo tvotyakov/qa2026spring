@@ -16,8 +16,6 @@ public class SwagLabsLoginTest {
     private static final String BASE_URL = "https://www.saucedemo.com";
 
     private WebDriver driver;
-    private WebElement username;
-    private WebElement password;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -65,11 +63,11 @@ public class SwagLabsLoginTest {
 
         // Asserts
         Assert.assertTrue(
-            hasClass(username, "error"),
+            hasClass(getUsername(), "error"),
             "UserName should be marked by error class");
 
         Assert.assertTrue(
-            hasClass(password, "error"),
+            hasClass(getPassword(), "error"),
             "Password should be marked by error class");
 
         var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
@@ -89,11 +87,11 @@ public class SwagLabsLoginTest {
 
         // Asserts
         Assert.assertTrue(
-            hasClass(username, "error"),
+            hasClass(getUsername(), "error"),
             "UserName should be marked by error class");
 
         Assert.assertTrue(
-            hasClass(password, "error"),
+            hasClass(getPassword(), "error"),
             "UserName should be marked by error class");
 
         var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
@@ -113,14 +111,9 @@ public class SwagLabsLoginTest {
     }
 
     private void login(String username) {
-        this.username = driver
-            .findElement(By
-                .cssSelector("input[data-test='username']"));
-        this.username.sendKeys(username);
+        getUsername().sendKeys(username);
 
-        this.password = driver
-            .findElement(By.cssSelector("input[data-test='password']"));
-        this.password.sendKeys("secret_sauce");
+        getPassword().sendKeys("secret_sauce");
 
         driver
             .findElement(By.cssSelector("input[data-test='login-button']"))
@@ -138,5 +131,15 @@ public class SwagLabsLoginTest {
 
         return classesList
             .contains(className);
+    }
+
+    private WebElement getUsername() {
+        return driver
+            .findElement(By.cssSelector("input[data-test='username']"));
+    }
+
+    private WebElement getPassword() {
+        return driver
+            .findElement(By.cssSelector("input[data-test='password']"));
     }
 }
