@@ -35,7 +35,7 @@ public class SwagLabsLoginTest {
     }
 
     @Test
-    public void TestStandardLogin_ShouldOpenProductPage() {
+    public void testStandardLoginShouldOpenProductPage() {
         // Act
         login("standard_user");
 
@@ -66,7 +66,7 @@ public class SwagLabsLoginTest {
     }
 
     @Test(dataProvider = "negative-tests")
-    public void TestNotExceptedLogin_ShouldShowError(String username, String expectedMessage) {
+    public void testNotExceptedLoginShouldShowError(String username, String expectedMessage) {
         // Act
         login(username);
 
