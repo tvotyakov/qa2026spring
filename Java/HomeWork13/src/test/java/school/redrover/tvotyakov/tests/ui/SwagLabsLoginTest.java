@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -56,10 +57,18 @@ public class SwagLabsLoginTest {
         Assert.assertEquals(secondHeader, "Products");
     }
 
-    @Test
-    public void TestUnknownLogin_ShouldShowError() {
+    @DataProvider(name = "negative-tests")
+    public Object[][] createNegativeTestsData() {
+        return new Object[][] {
+            { "unknown_user", "do not match any user" },
+            { "locked_out_user", "user has been locked out" },
+        };
+    }
+
+    @Test(dataProvider = "negative-tests")
+    public void TestNotExceptedLogin_ShouldShowError(String username, String expectedMessage) {
         // Act
-        login("unknown_user");
+        login(username);
 
         // Asserts
         Assert.assertTrue(
@@ -77,32 +86,10 @@ public class SwagLabsLoginTest {
 
         var errorMessage = errorMessageEl.getText();
         Assert.assertTrue(
-            errorMessage.contains("do not match any user"),
-            "Not expected error message. Actual text: " + errorMessage);
-    }
-
-    @Test
-    public void TestLockedOutLogin_ShouldShowError() {
-        login("locked_out_user");
-
-        // Asserts
-        Assert.assertTrue(
-            hasErrorClass(getUsername()),
-            "UserName should be marked by error class");
-
-        Assert.assertTrue(
-            hasErrorClass(getPassword()),
-            "UserName should be marked by error class");
-
-        var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
-        Assert.assertTrue(
-            errorMessageEl.isDisplayed(),
-            "Error message should be displayed");
-
-        var errorMessage = errorMessageEl.getText();
-        Assert.assertTrue(
-            errorMessage.contains("user has been locked out"),
-            "Not expected error message. Actual text: " + errorMessage);
+            errorMessage.contains(expectedMessage),
+            "Not expected error message.\n" +
+                " Expected: " + expectedMessage + "\n" +
+                " Actual: " + errorMessage);
     }
 
     @AfterMethod
