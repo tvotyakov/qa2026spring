@@ -63,11 +63,11 @@ public class SwagLabsLoginTest {
 
         // Asserts
         Assert.assertTrue(
-            hasClass(getUsername(), "error"),
+            hasErrorClass(getUsername()),
             "UserName should be marked by error class");
 
         Assert.assertTrue(
-            hasClass(getPassword(), "error"),
+            hasErrorClass(getPassword()),
             "Password should be marked by error class");
 
         var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
@@ -87,11 +87,11 @@ public class SwagLabsLoginTest {
 
         // Asserts
         Assert.assertTrue(
-            hasClass(getUsername(), "error"),
+            hasErrorClass(getUsername()),
             "UserName should be marked by error class");
 
         Assert.assertTrue(
-            hasClass(getPassword(), "error"),
+            hasErrorClass(getPassword()),
             "UserName should be marked by error class");
 
         var errorMessageEl = driver.findElement(By.cssSelector("[data-test='error']"));
@@ -120,7 +120,7 @@ public class SwagLabsLoginTest {
             .click();
     }
 
-    private boolean hasClass(WebElement element, String className) {
+    private boolean hasErrorClass(WebElement element) {
         var classes = element.getAttribute("class");
 
         if (classes == null || classes.isEmpty()) {
@@ -130,7 +130,7 @@ public class SwagLabsLoginTest {
         var classesList = Arrays.asList(classes.split(" "));
 
         return classesList
-            .contains(className);
+            .contains("error");
     }
 
     private WebElement getUsername() {
